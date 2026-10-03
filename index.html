@@ -982,6 +982,16 @@ body.locked > :not(.login){display:none!important}
 @media (max-width:980px){body.calc-on .totop{display:none}}
 @media print{body.printing *{visibility:hidden}body.printing .print-target,body.printing .print-target *{visibility:visible}body.printing .print-target{position:absolute;left:0;top:0;width:100%}body.printing .actions,body.printing .mbar{display:none!important}body.printing .why{display:block}}
 
+
+/* ---- Cố định menu, nút chương trình khi cuộn ---- */
+@media (max-width:720px){
+  .topbar{position:sticky;top:0}
+  body.scrolled .topbar .search,body.scrolled .brand .t2{display:none}
+  body.scrolled .topbar .row1{padding:6px 0;gap:6px}
+  body.scrolled .brand .logo{width:28px;height:28px}
+}
+#view-calc .mt-modes{position:sticky;top:var(--hdr,62px);z-index:34}
+#view-calc .result-col{top:calc(var(--hdr,62px) + var(--mtm,0px) + 14px)}
 </style>
 </head>
 <body class="locked">
@@ -1201,7 +1211,7 @@ const TABS = [
   {id:'dd', name:'DI ĐỘNG', icon:'phone', title:'Di động', desc:'Bứt phá thuê bao mới · Gói cước mục tiêu · Phân hạng ĐUQ · CTV liên kết PSSL',
    subs:[['ptm','Tăng tốc PTM','zap'],['goi','Gói cước mục tiêu','box'],['duq','Phân hạng ĐUQ','store'],['ctv','CTV liên kết PSSL','users']]},
   {id:'cntt', name:'SỐ DOANH NGHIỆP', icon:'cpu', title:'Số doanh nghiệp', desc:'Dịch vụ số · HKD · eContract · Loa thanh toán · TLS/INTT · Y tế số · Giáo dục số · Dự án',
-   subs:[['dvs','Dịch vụ số (17 KV)','trophy'],['hkd','HKD · eContract · Loa','file'],['tls','TLS / INTT','globe'],['yte','Y tế số','heart'],['gd','Giáo dục số','school'],['ttkd','TTKDGP / Đấu thầu','briefcase']]},
+   subs:[['dvs','17 VNPT KV','trophy'],['ttkd','Dự thầu TTKDGP','briefcase'],['hkd','HKD · eContract · Loa','file'],['tls','TLS / INTT','globe'],['ytegd','Y tế số · Giáo dục số','heart']]},
   {id:'km', name:'KHUYẾN MẠI T10', icon:'gift'},
   {id:'calc', name:'THỬ TÍNH', icon:'calc'}
 ];
@@ -1597,8 +1607,8 @@ const PROGRAMS = [
 /* ======================= SỐ DOANH NGHIỆP ======================= */
 {
   id:'it-17kv', tab:'cntt', sub:'dvs', icon:'trophy',
-  title:'Khen thưởng tập thể đối với 17 VNPT KV – Dịch vụ số',
-  headline:'TOP 3 VNPT KV MỖI THÁNG – HOÀN THÀNH KẾ HOẠCH DVS CAO NHẤT',
+  title:'Thúc đẩy doanh thu bán hàng theo tháng đối với 17 VNPT KV',
+  headline:'TOP 3 VNPT KV MỖI THÁNG – TỶ LỆ HOÀN THÀNH KẾ HOẠCH DỊCH VỤ SỐ CAO NHẤT',
   types:['tapthe','xephang'], roles:['DONVI'], services:['dvs'],
   time:'01/10/2026 – 31/12/2026',
   who:'17 VNPT KV',
@@ -1608,22 +1618,22 @@ const PROGRAMS = [
         '<div class="pod p1"><div class="pr">GIẢI NHẤT</div><div class="pv">4.000.000đ</div></div>'+
         '<div class="pod p3"><div class="pr">GIẢI BA</div><div class="pv">2.000.000đ</div></div>'+
       '</div>'+
-      '<div class="mcard"><div class="mt"><span class="ic">'+ic('target')+'</span>Điều kiện xét thưởng (mỗi tháng)</div><div class="md">Lựa chọn <b>03 VNPT KV</b> có <b>tỷ lệ hoàn thành kế hoạch dịch vụ số cao nhất</b> và đạt tối thiểu <b>trên 80% kế hoạch bán hàng tháng DVS</b> được giao.</div></div>'+
+      '<div class="mcard"><div class="mt"><span class="ic">'+ic('target')+'</span>Điều kiện xét thưởng (mỗi tháng)</div><div class="md">Lựa chọn <b>03 VNPT KV</b> có <b>tỷ lệ hoàn thành kế hoạch dịch vụ số cao nhất</b> và đạt tối thiểu <b>trên 80% kế hoạch Doanh thu bán hàng (doanh thu không phân bổ) tháng DVS</b> được giao.</div></div>'+
     '</div>'; },
   blocks:{
-    what:'<p>Chương trình <b>khen thưởng tập thể đối với 17 VNPT KV</b> về dịch vụ số.</p>',
+    what:'<p>Chương trình <b>thúc đẩy doanh thu bán hàng theo tháng đối với 17 VNPT KV</b>.</p>',
     who:'<p><b>17 VNPT KV</b>.</p>',
-    how:'<p>Hoàn thành kế hoạch dịch vụ số; đạt tối thiểu <b>trên 80%</b> kế hoạch bán hàng tháng DVS được giao.</p>',
+    how:'<p>Hoàn thành kế hoạch dịch vụ số; đạt tối thiểu <b>trên 80%</b> kế hoạch Doanh thu bán hàng (doanh thu không phân bổ) tháng DVS được giao.</p>',
     reach:'<p>Mỗi tháng chọn <b>03 VNPT KV</b> có tỷ lệ hoàn thành kế hoạch DVS cao nhất.</p>',
     money:'<ul><li>Giải Nhất: <b class="money">4.000.000đ</b></li><li>Giải Nhì: <b class="money">3.000.000đ</b></li><li>Giải Ba: <b class="money">2.000.000đ</b></li></ul>',
     note:'<p>Cơ cấu giải thưởng <b>hàng tháng</b>, xét theo xếp hạng.</p>'+SRC
   },
-  remember:['Top 3 tỷ lệ hoàn thành kế hoạch dịch vụ số','Đạt tối thiểu trên 80% kế hoạch bán hàng tháng DVS','Xét mỗi tháng từ 01/10 đến 31/12/2026'],
+  remember:['Top 3 tỷ lệ hoàn thành kế hoạch dịch vụ số','Đạt tối thiểu trên 80% kế hoạch DT bán hàng (không phân bổ) tháng DVS','Xét mỗi tháng từ 01/10 đến 31/12/2026'],
   calc:'c-17kv'
 },
 {
   id:'it-hkd', tab:'cntt', sub:'hkd', icon:'file',
-  title:'Thúc đẩy bán hàng dịch vụ HKD, eContract, Loa thanh toán',
+  title:'Chương trình thúc đẩy bán hàng trọng điểm dịch vụ HKD, eContract, Loa thanh toán',
   headline:'PHÁT TRIỂN MỚI – NHẬN KHEN THƯỞNG THEO TỪNG THUÊ BAO',
   types:['canhan','sanluong','doanhthu'], roles:['AM','NVKD'], services:['hkd','econtract','loa'],
   time:'01/10/2026 – 31/12/2026',
@@ -1634,7 +1644,7 @@ const PROGRAMS = [
       '<div class="mcard"><div class="mt"><span class="ic">'+ic('speaker')+'</span>Loa thanh toán</div><div class="mv">50.000<small>đ/thuê bao</small></div><div class="md">Thuê bao Loa thanh toán phát triển mới.</div></div>'+
     '</div>'; },
   blocks:{
-    what:'<p>Chương trình <b>TĐBH dịch vụ HKD, eContract, Loa thanh toán</b>.</p>',
+    what:'<p>Chương trình <b>thúc đẩy bán hàng trọng điểm dịch vụ HKD, eContract, Loa thanh toán</b>.</p>',
     who:'<p><b>Nhân viên kinh doanh AM</b>.</p>',
     how:'<ul><li>Phát triển mới thuê bao HKD (gói combo), SBH.</li><li>Phát triển mới eContract có doanh thu từ 350.000đ trở lên.</li><li>Phát triển mới Loa thanh toán.</li></ul>',
     reach:'<p>Tính theo <b>từng thuê bao</b> phát triển mới đạt điều kiện.</p>',
@@ -1646,7 +1656,7 @@ const PROGRAMS = [
 },
 {
   id:'it-tls', tab:'cntt', sub:'tls', icon:'globe',
-  title:'Thúc đẩy bán hàng dịch vụ TLS/INTT',
+  title:'Chương trình khuyến khích bán hàng dịch vụ TLS/INTT',
   headline:'TOP 3 THUÊ BAO MỖI THÁNG – 3.000.000đ/THUÊ BAO',
   types:['canhan','doanhthu','xephang'], roles:['AM','NVKD'], services:['tls'],
   time:'01/10/2026 – 31/12/2026',
@@ -1658,7 +1668,7 @@ const PROGRAMS = [
       '<div class="vnode n1"><div class="vl">③ Top 3 DT phân bổ tháng</div><div class="vv" style="font-size:18px">3.000.000đ/TB</div></div>'+
     '</div>'; },
   blocks:{
-    what:'<p>Chương trình <b>TĐBH dịch vụ TLS/INTT</b>.</p>',
+    what:'<p>Chương trình <b>khuyến khích bán hàng dịch vụ TLS/INTT</b>.</p>',
     who:'<p><b>Nhân viên kinh doanh AM</b>.</p>',
     how:'<p>Phát triển mới thuê bao TLS/INTT có doanh thu phân bổ tháng cao.</p>',
     reach:'<ul><li>Tối thiểu đạt ngưỡng doanh thu <b>10.000.000 VNĐ/tháng</b>.</li><li>Nằm trong <b>03 thuê bao</b> có doanh thu phân bổ tháng cao nhất.</li></ul>',
@@ -1669,15 +1679,15 @@ const PROGRAMS = [
   calc:'c-tls'
 },
 {
-  id:'it-yte', tab:'cntt', sub:'yte', icon:'heart',
-  title:'Thúc đẩy bán hàng lĩnh vực Y tế số',
+  id:'it-yte', tab:'cntt', sub:'ytegd', icon:'heart',
+  title:'Chương trình TĐBH lĩnh vực Y tế số, Giáo dục số – Dịch vụ Y tế số',
   headline:'NGHIỆM THU ĐƯA VÀO SỬ DỤNG – NHẬN KHEN THƯỞNG',
   types:['duan','doanhthu'], roles:['AM','NHOM'], services:['yte'],
   time:'01/10/2026 – 31/12/2026',
   who:'AM, Nhóm triển khai',
   visual: function(){ return '<div class="grid2">'+
       '<div class="mcard hl"><div class="mt"><span class="ic">'+ic('user')+'</span>AM</div><div class="mv">2.000.000<small>đ/AM</small></div></div>'+
-      '<div class="mcard"><div class="mt"><span class="ic">'+ic('users')+'</span>Nhóm triển khai</div><div class="mv">1.000.000<small>đ/nhóm triển khai</small></div></div>'+
+      '<div class="mcard"><div class="mt"><span class="ic">'+ic('users')+'</span>Nhóm triển khai</div><div class="mv">2.000.000<small>đ/nhóm triển khai</small></div></div>'+
     '</div>'+
     '<div class="vflow" style="margin-top:14px">'+
       '<div class="vnode n0"><div class="vl">Phòng khám</div><div class="vv" style="font-size:17px">HIS / LIS / PACS / EMR</div></div><div class="varrow">'+ic('arrow')+'</div>'+
@@ -1685,50 +1695,50 @@ const PROGRAMS = [
       '<div class="vnode n1"><div class="vl">Được nghiệm thu</div><div class="vv" style="font-size:17px">Nhận khen thưởng</div></div>'+
     '</div>'; },
   blocks:{
-    what:'<p>Chương trình <b>TĐBH lĩnh vực Y tế số</b>.</p>',
+    what:'<p>Chương trình <b>TĐBH lĩnh vực Y tế số, giáo dục số</b> – phần <b>Dịch vụ Y tế số</b>.</p>',
     who:'<p><b>AM</b> và <b>nhóm triển khai</b>.</p>',
     how:'<p>Triển khai cho các phòng khám có doanh thu tối thiểu <b>(HIS/LIS/PACS/EMR) 3 triệu đồng/tháng</b>.</p>',
     reach:'<p>Phòng khám đạt doanh thu tối thiểu và <b>được nghiệm thu</b>.</p>',
-    money:'<ul><li><b class="money">2.000.000đ/AM</b></li><li><b class="money">1.000.000đ/nhóm triển khai</b></li></ul>',
+    money:'<ul><li><b class="money">2.000.000đ/AM</b></li><li><b class="money">2.000.000đ/nhóm triển khai</b></li></ul>',
     note:'<p>Chỉ tính phòng khám <b>được nghiệm thu</b>.</p>'+SRC
   },
   remember:['Phòng khám dùng HIS/LIS/PACS/EMR','Doanh thu tối thiểu 3 triệu đồng/tháng','Phải được nghiệm thu'],
   calc:'c-yte'
 },
 {
-  id:'it-gd', tab:'cntt', sub:'gd', icon:'school',
-  title:'Thúc đẩy bán hàng lĩnh vực Giáo dục số',
+  id:'it-gd', tab:'cntt', sub:'ytegd', icon:'school',
+  title:'Chương trình TĐBH lĩnh vực Y tế số, Giáo dục số – Dịch vụ Giáo dục số',
   headline:'NGHIỆM THU ĐƯA VÀO SỬ DỤNG – NHẬN KHEN THƯỞNG',
   types:['duan'], roles:['AM','NHOM'], services:['gd'],
   time:'01/10/2026 – 31/12/2026',
   who:'AM, Nhóm triển khai',
   visual: function(){ return '<div class="tblwrap"><table class="tbl"><thead><tr><th>Dịch vụ Giáo dục số</th><th class="r">AM</th><th class="r">Nhóm triển khai</th></tr></thead><tbody>'+
-      '<tr><td><b>Điểm danh thông minh</b><div class="muted" style="font-size:12.5px">các trường học sử dụng dịch vụ</div></td><td class="r"><b class="money">2.000.000đ/AM</b></td><td class="r"><b class="money">1.000.000đ/nhóm</b></td></tr>'+
+      '<tr><td><b>Điểm danh thông minh</b><div class="muted" style="font-size:12.5px">các trường học sử dụng dịch vụ</div></td><td class="r"><b class="money">2.000.000đ/AM</b></td><td class="r"><b class="money">2.000.000đ/nhóm</b></td></tr>'+
       '<tr><td><b>Lớp học thông minh</b><div class="muted" style="font-size:12.5px">được nghiệm thu đưa vào sử dụng</div></td><td class="r"><b class="money">4.000.000đ/AM</b></td><td class="r"><b class="money">2.000.000đ/nhóm</b></td></tr>'+
     '</tbody></table></div>'; },
   blocks:{
-    what:'<p>Chương trình <b>TĐBH lĩnh vực Giáo dục số</b>: Điểm danh thông minh và Lớp học thông minh.</p>',
+    what:'<p>Chương trình <b>TĐBH lĩnh vực Y tế số, giáo dục số</b> – phần <b>Dịch vụ Giáo dục số</b>: Điểm danh thông minh và Lớp học thông minh.</p>',
     who:'<p><b>AM</b> và <b>nhóm triển khai</b>.</p>',
     how:'<ul><li>Các trường học sử dụng dịch vụ <b>Điểm danh thông minh</b>.</li><li>Các <b>lớp học thông minh</b> được nghiệm thu đưa vào sử dụng.</li></ul>',
     reach:'<p>Được <b>nghiệm thu đưa vào sử dụng</b>.</p>',
-    money:'<ul><li>Điểm danh thông minh: <b class="money">2.000.000đ/AM</b> và <b class="money">1.000.000đ/nhóm triển khai</b>.</li><li>Lớp học thông minh: <b class="money">4.000.000đ/AM</b> và <b class="money">2.000.000đ/nhóm triển khai</b>.</li></ul>',
+    money:'<ul><li>Điểm danh thông minh: <b class="money">2.000.000đ/AM</b> và <b class="money">2.000.000đ/nhóm triển khai</b>.</li><li>Lớp học thông minh: <b class="money">4.000.000đ/AM</b> và <b class="money">2.000.000đ/nhóm triển khai</b>.</li></ul>',
     note:'<p>Chỉ tính khi <b>được nghiệm thu đưa vào sử dụng</b>.</p>'+SRC
   },
-  remember:['Điểm danh thông minh: 2.000.000đ/AM – 1.000.000đ/nhóm','Lớp học thông minh: 4.000.000đ/AM – 2.000.000đ/nhóm','Phải được nghiệm thu đưa vào sử dụng'],
+  remember:['Điểm danh thông minh: 2.000.000đ/AM – 2.000.000đ/nhóm','Lớp học thông minh: 4.000.000đ/AM – 2.000.000đ/nhóm','Phải được nghiệm thu đưa vào sử dụng'],
   calc:'c-gd'
 },
 {
   id:'it-ttkdgp', tab:'cntt', sub:'ttkd', icon:'briefcase',
-  title:'Khen thưởng đối với TTKDGP – Dự án đấu thầu',
+  title:'Chương trình khen thưởng nâng cao tỷ lệ dự thầu thành công đối với TTKDGP',
   headline:'ĐẤU THẦU THÀNH CÔNG – HỢP ĐỒNG TỪ 1 TỶ ĐỒNG',
   types:['tapthe','duan'], roles:['DONVI'], services:['duan'],
   time:'01/10/2026 – 31/12/2026',
   who:'TTKDGP',
   visual: function(){ return '<div class="bignum"><div class="v">2.000.000<small>đ/dự án</small></div><div class="d"><b>Dự án tham gia đấu thầu thành công</b>và có giá trị hợp đồng tối thiểu <b style="display:inline;color:#FFD68A">từ 1 tỷ trở lên</b>.</div></div>'; },
   blocks:{
-    what:'<p>Chương trình <b>khen thưởng đối với TTKDGP</b>.</p>',
+    what:'<p>Chương trình <b>khen thưởng nâng cao tỷ lệ dự thầu thành công đối với TTKDGP</b>.</p>',
     who:'<p><b>TTKDGP</b>.</p>',
-    how:'<p>Tham gia <b>đấu thầu thành công</b>.</p>',
+    how:'<p>Dự án tham gia <b>đấu thầu thành công</b>.</p>',
     reach:'<p>Giá trị hợp đồng tối thiểu <b>từ 1 tỷ trở lên</b>.</p>',
     money:'<p><b class="money">2.000.000đ/dự án</b>.</p>',
     note:'<p>Thời gian xét khen thưởng: <b>từ 1/10/2026 – 31/12/2026</b>.</p>'+SRC
@@ -1920,7 +1930,7 @@ function renderHome(){
   h+='<div class="sec-title">'+ic('layers')+'Chọn mảng dịch vụ</div><div class="groups">'+
      grp('br','wifi','BĂNG RỘNG',[['Fiber','tapthe'],['MyTV','tapthe'],['Mesh','tapthe'],['Camera','tapthe'],['Cá nhân','canhan'],['Thị phần thấp','dbthap'],['CCCO/NOXH','ccco']],'Thi đua tập thể · Cá nhân · Thị phần thấp · CCCO/NOXH')+
      grp('dd','phone','DI ĐỘNG',[['PTM','ptm'],['Gói cước mục tiêu','goi'],['ĐUQ','duq'],['CTV','ctv']],'Bứt phá thuê bao mới · Bán gói · Phân hạng kênh')+
-     grp('cntt','cpu','SỐ DOANH NGHIỆP',[['Dịch vụ số','dvs'],['HKD','hkd'],['eContract','hkd'],['Loa thanh toán','hkd'],['TLS/INTT','tls'],['Y tế số','yte'],['Giáo dục số','gd']],'Dịch vụ số · Y tế số · Giáo dục số · Dự án')+
+     grp('cntt','cpu','SỐ DOANH NGHIỆP',[['17 VNPT KV','dvs'],['Dự thầu TTKDGP','ttkd'],['HKD','hkd'],['eContract','hkd'],['Loa thanh toán','hkd'],['TLS/INTT','tls'],['Y tế số','ytegd'],['Giáo dục số','ytegd']],'Dịch vụ số · Y tế số · Giáo dục số · Dự án')+
      '</div>'+
      '<div class="km-banner" data-goto="km:tq"><div class="bi">'+ic('gift')+'</div><div><h4>KHUYẾN MẠI BR-CĐ THÁNG 10/2026 – HOÀN TIỀN CHO KHÁCH HÀNG</h4><p>5 nhóm chính sách · Lập HĐ 01/10 – 31/10/2026 · Nghiệm thu trên ĐHSXKD trước 31/10/2026 · Quà tặng: Tiền mặt</p></div><div class="bv">700.000 VNĐ<small>mức cao nhất / TB PTM</small></div></div>'+
      '<div class="km-banner" data-goto="km:dd-tq"><div class="bi">'+ic('phone')+'</div><div><h4>KHUYẾN MẠI DI ĐỘNG THÁNG 10/2026 – QUÀ TẶNG TIỀN MẶT CHO KHÁCH HÀNG</h4><p>2 chương trình · Hòa mạng mới 01/10 – 31/10/2026 · Gói từ 100.000đ hoặc DN từ 50 TB · Nhận tiền 12/11 – 30/11/2026</p></div><div class="bv">600.000đ<small>mức cao nhất (VIP499 · Gói 12T)</small></div></div>';
@@ -2210,10 +2220,10 @@ const CALCS = {
   'c-ttkd':{g:'Số doanh nghiệp', l:'TTKDGP – dự án đấu thầu', prog:'it-ttkdgp',
     fields:[F('n','Số dự án đấu thầu thành công, giá trị HĐ từ 1 tỷ trở lên')],
     run:v=>{ if(isNaN(v.n)||v.n<=0) return res(null,'Nhập số dự án đạt điều kiện',[],''); return res(v.n*2000000,'2.000.000đ/dự án',[stepLi(null,fmtN(v.n)+' dự án × 2.000.000đ = <b>'+fmt(v.n*2000000)+'</b>')],'Thời gian xét: 01/10/2026 – 31/12/2026.',true); }},
-  'c-17kv':{g:'Số doanh nghiệp – Chỉ tra mức (không tính tự động)', l:'17 VNPT KV – Dịch vụ số (xếp hạng)', prog:'it-17kv', info:'Xét <b>03 VNPT KV</b> mỗi tháng có tỷ lệ hoàn thành kế hoạch DVS cao nhất, đạt tối thiểu trên 80% kế hoạch bán hàng tháng DVS. Giải Nhất <b class="money">4.000.000đ</b> · Nhì <b class="money">3.000.000đ</b> · Ba <b class="money">2.000.000đ</b>.', fields:[]},
+  'c-17kv':{g:'Số doanh nghiệp – Chỉ tra mức (không tính tự động)', l:'17 VNPT KV – Dịch vụ số (xếp hạng)', prog:'it-17kv', info:'Xét <b>03 VNPT KV</b> mỗi tháng có tỷ lệ hoàn thành kế hoạch DVS cao nhất, đạt tối thiểu trên 80% kế hoạch Doanh thu bán hàng (doanh thu không phân bổ) tháng DVS. Giải Nhất <b class="money">4.000.000đ</b> · Nhì <b class="money">3.000.000đ</b> · Ba <b class="money">2.000.000đ</b>.', fields:[]},
   'c-tls':{g:'Số doanh nghiệp – Chỉ tra mức (không tính tự động)', l:'TLS/INTT (xếp hạng top 3/tháng)', prog:'it-tls', info:'Mỗi tháng chọn <b>03 TB TLS/INTT PTM</b> có doanh thu phân bổ tháng cao nhất, tối thiểu 10.000.000 VNĐ/tháng. Mức: <b class="money">3.000.000đ/thuê bao</b>.', fields:[]},
-  'c-yte':{g:'Số doanh nghiệp – Chỉ tra mức (không tính tự động)', l:'Y tế số', prog:'it-yte', info:'<b class="money">2.000.000đ/AM</b> và <b class="money">1.000.000đ/nhóm triển khai</b> với các phòng khám có doanh thu tối thiểu (HIS/LIS/PACS/EMR) 3 triệu đồng/tháng được nghiệm thu.', fields:[]},
-  'c-gd':{g:'Số doanh nghiệp – Chỉ tra mức (không tính tự động)', l:'Giáo dục số', prog:'it-gd', info:'Điểm danh thông minh: <b class="money">2.000.000đ/AM</b> và <b class="money">1.000.000đ/nhóm triển khai</b>. Lớp học thông minh: <b class="money">4.000.000đ/AM</b> và <b class="money">2.000.000đ/nhóm triển khai</b>. Điều kiện: được nghiệm thu đưa vào sử dụng.', fields:[]}
+  'c-yte':{g:'Số doanh nghiệp – Chỉ tra mức (không tính tự động)', l:'Y tế số', prog:'it-yte', info:'<b class="money">2.000.000đ/AM</b> và <b class="money">2.000.000đ/nhóm triển khai</b> với các phòng khám có doanh thu tối thiểu (HIS/LIS/PACS/EMR) 3 triệu đồng/tháng được nghiệm thu.', fields:[]},
+  'c-gd':{g:'Số doanh nghiệp – Chỉ tra mức (không tính tự động)', l:'Giáo dục số', prog:'it-gd', info:'Điểm danh thông minh: <b class="money">2.000.000đ/AM</b> và <b class="money">2.000.000đ/nhóm triển khai</b>. Lớp học thông minh: <b class="money">4.000.000đ/AM</b> và <b class="money">2.000.000đ/nhóm triển khai</b>. Điều kiện: được nghiệm thu đưa vào sử dụng.', fields:[]}
 };
 const PKG=[['YOLO125Z',125000,375000],['D159V',159000,477000]];
 
@@ -2758,6 +2768,10 @@ function init(){
   bind();
   updateTree();
   setHdr(); window.addEventListener('resize',()=>{ setHdr(); setStb(); }); window.addEventListener('scroll',trackJump,{passive:true});
+  /* cập nhật chiều cao thanh menu/nút chương trình mỗi khi thay đổi (sau đăng nhập, đổi kích thước, thu gọn khi cuộn) */
+  if(window.ResizeObserver){ const ro=new ResizeObserver(()=>{ setHdr(); setStb(); const m=$('#view-calc .mt-modes'); if(m) document.documentElement.style.setProperty('--mtm',(m.offsetHeight+10)+'px'); });
+    ro.observe($('.topbar')); $$('.view > .subtabs').forEach(x=>ro.observe(x)); const m=$('#view-calc .mt-modes'); if(m) ro.observe(m); }
+  window.addEventListener('scroll',()=>{ const y=window.scrollY, b=document.body; if(y>140&&!b.classList.contains('scrolled')) b.classList.add('scrolled'); else if(y<30&&b.classList.contains('scrolled')) b.classList.remove('scrolled'); },{passive:true});
   showTab('home', null, true);
   applyFilter();
 }
@@ -3636,7 +3650,7 @@ window.MTC = {
   const KEY='vnpt_hpg_auth';
   const ss={get(){try{return sessionStorage.getItem(KEY);}catch(e){return null;}},set(v){try{v===null?sessionStorage.removeItem(KEY):sessionStorage.setItem(KEY,v);}catch(e){}}};
   async function sha(s){ const d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)); return [...new Uint8Array(d)].map(b=>b.toString(16).padStart(2,'0')).join(''); }
-  function unlock(){ document.body.classList.remove('locked'); window.scrollTo(0,0); }
+  function unlock(){ document.body.classList.remove('locked'); window.scrollTo(0,0); if(typeof setHdr==='function'){ setHdr(); setStb(); } }
   window.vnptLogout=function(){ ss.set(null); location.reload(); };
   if(ss.get()===H){ unlock(); return; }
   const f=document.getElementById('lgForm'), u=document.getElementById('lgUser'), p=document.getElementById('lgPass'), btn=document.getElementById('lgBtn'), err=document.getElementById('lgErr');
